@@ -1,5 +1,6 @@
 import random
 import time
+import pygame
 
 
 class RedCell:
@@ -10,6 +11,7 @@ class RedCell:
         self.length = length
         self.height = height
         self.move()
+        self.red = pygame.image.load("RedBlood.png")
 
     # Change these later ( default here )
     positionX = 400
@@ -33,3 +35,5 @@ class RedCell:
             if direction == 4 and self.positionY < 570 -3:
                 self.positionY += self.speed
 
+    def draw(self, window):
+        window.blit(self.red, (self.positionX, self.positionY))

@@ -1,4 +1,5 @@
 import random
+import pygame
 import time
 
 class CovidCell:
@@ -9,6 +10,7 @@ class CovidCell:
         self.length = length
         self.height = height
         self.move()
+        self.covidCell = pygame.image.load("Covid.png")
 
     # Change these later ( default here )
     positionX = 100
@@ -32,3 +34,5 @@ class CovidCell:
             if direction == 4 and self.positionY < 570 - 3:
                 self.positionY += self.speed
 
+    def draw(self, window):
+        window.blit(self.covidCell, (self.positionX, self.positionY))
