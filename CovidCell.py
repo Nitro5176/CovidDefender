@@ -23,12 +23,12 @@ class CovidCell:
 
 
         for i in range(5):
-            if direction == 1:
+            if direction == 1 and self.positionX > 0 + 3:
                 self.positionX -= self.speed
-            if direction == 2:
+            if direction == 2 and self.positionY > 0 + 3:
                 self.positionY -= self.speed
-            if direction == 3:
+            if direction == 3 and self.positionX < 570 - 3:
                 self.positionX += self.speed
-            if direction == 4:
+            if direction == 4 and self.positionY < 570 - 3:
                 self.positionY += self.speed
 

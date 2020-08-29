@@ -1,6 +1,7 @@
 import pygame
 from CovidCell import CovidCell
 from CharacterCell import CharacterCell
+from RedCell import RedCell
 
 pygame.init()
 #size of the window
@@ -46,7 +47,8 @@ def main():
     # makes the variable running global.
     global running, height, length, speed, positionX, positionY
 
-    covid = CovidCell((200, 0, 0), 3, 30, 30)
+    red = RedCell((204,0,0), 3, 30, 30)
+    covid = CovidCell((255, 0, 255), 3, 30, 30)
     hero = CharacterCell(positionX, positionY, height, length, speed)
 
     while running:
@@ -70,6 +72,7 @@ def main():
             hero.positionX -= speed
 
         covid.move()
+        red.move()
 
         # makes the wallpaper black
         window.fill((0,0,0))
@@ -78,6 +81,7 @@ def main():
 
         hero.draw(window)
         pygame.draw.rect(window, covid.color, (covid.positionX, covid.positionY, covid.length, covid.height))
+        pygame.draw.rect(window, red.color, (red.positionX, red.positionY, red.length, red.height))
 
         #needs to refresh otherwise it would show a black screen
         pygame.display.update()
