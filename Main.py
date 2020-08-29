@@ -1,5 +1,6 @@
 import pygame
 from CovidCell import CovidCell
+from CharacterCell import CharacterCell
 
 pygame.init()
 #size of the window
@@ -46,6 +47,7 @@ def main():
     global running, height, length, speed, positionX, positionY
 
     covid = CovidCell((200, 0, 0), 3, 30, 30)
+    hero = CharacterCell(positionX, positionY, height, length, speed)
 
     while running:
         # frames:
@@ -59,13 +61,13 @@ def main():
         # when a key is pressed
         keyPressed = pygame.key.get_pressed()
         if keyPressed[pygame.K_UP] and positionY > originY:
-            positionY -= speed
+            hero.positionY -= speed
         if keyPressed[pygame.K_DOWN] and positionY < screenY - height:
-            positionY += speed
+            hero.positionY += speed
         if keyPressed[pygame.K_RIGHT] and positionX < screenX - length:
-            positionX += speed
+            hero.positionX += speed
         if keyPressed[pygame.K_LEFT] and positionX > originX:
-            positionX -= speed
+            hero.positionX -= speed
 
         covid.move()
 
@@ -74,7 +76,7 @@ def main():
 
         # One CovidCell
 
-        pygame.draw.rect(window, (0,255,0), (positionX, positionY, length, height))
+        hero.draw(window)
         pygame.draw.rect(window, covid.color, (covid.positionX, covid.positionY, covid.length, covid.height))
 
         #needs to refresh otherwise it would show a black screen
