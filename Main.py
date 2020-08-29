@@ -62,13 +62,13 @@ def main():
 
         # when a key is pressed
         keyPressed = pygame.key.get_pressed()
-        if keyPressed[pygame.K_UP] and positionY > originY:
+        if keyPressed[pygame.K_UP] and hero.positionY > originY:
             hero.positionY -= speed
-        if keyPressed[pygame.K_DOWN] and positionY < screenY - height:
+        if keyPressed[pygame.K_DOWN] and hero.positionY < screenY - hero.height:
             hero.positionY += speed
-        if keyPressed[pygame.K_RIGHT] and positionX < screenX - length:
+        if keyPressed[pygame.K_RIGHT] and hero.positionX < screenX - hero.length:
             hero.positionX += speed
-        if keyPressed[pygame.K_LEFT] and positionX > originX:
+        if keyPressed[pygame.K_LEFT] and hero.positionX > originX:
             hero.positionX -= speed
 
         covid.move()
