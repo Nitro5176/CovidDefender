@@ -43,7 +43,14 @@ def main():
                 running = False
         #makes the wallpaper black
         window.fill((0,0,0))
-
+        #top left
+        pygame.draw.circle(window, (0,200,0), (300,300), 50)
+        #middle
+        pygame.draw.circle(window, (200, 0, 0), (0, 0), 20)
+        #bottom right
+        pygame.draw.circle(window, (102,0,0), (600,600), 20)
+        #needs to refresh otherwise it would show a black screen
+        pygame.display.update()
 #calling the main method
 main()
 pygame.quit()
