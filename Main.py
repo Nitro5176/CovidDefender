@@ -29,9 +29,16 @@ print("    /   |   \ ")
 #Global variables:
 running = True
 
+#temporary variables:
+height = 50
+length = 50
+speed = 5
+positionX = 300
+positionY = 300
+
 def main():
     #makes the variable running global.
-    global running
+    global running, height, length, speed, positionX, positionY
 
     while running:
         #frames:
@@ -41,14 +48,22 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+
+        #when a key is pressed
+        keyPressed = pygame.key.get_pressed()
+
+        if keyPressed[pygame.K_UP]:
+            positionY -= speed
+        if keyPressed[pygame.K_DOWN]:
+            positionY += speed
+        if keyPressed[pygame.K_RIGHT]:
+            positionX += speed
+        if keyPressed[pygame.K_LEFT]:
+            positionX -= speed
+
         #makes the wallpaper black
         window.fill((0,0,0))
-        #top left
-        pygame.draw.circle(window, (0,200,0), (300,300), 50)
-        #middle
-        pygame.draw.circle(window, (200, 0, 0), (0, 0), 20)
-        #bottom right
-        pygame.draw.circle(window, (102,0,0), (600,600), 20)
+        pygame.draw.rect(window, (0,255,0), (positionX, positionY, length, height))
         #needs to refresh otherwise it would show a black screen
         pygame.display.update()
 #calling the main method
