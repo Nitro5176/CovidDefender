@@ -3,4 +3,4 @@ import pygame
 print("Hello Howard")
 print("Hello Stephen 2")
 print("Hello Hello")
-print("WTFnis THIS")
+print("WTF is THIS")
