@@ -28,6 +28,10 @@ print("    /   |   \ ")
 
 #Global variables:
 running = True
+screenX = 600
+screenY = 600
+originX = 0
+originY = 0
 
 #temporary variables:
 height = 50
@@ -51,14 +55,13 @@ def main():
 
         #when a key is pressed
         keyPressed = pygame.key.get_pressed()
-
-        if keyPressed[pygame.K_UP]:
+        if keyPressed[pygame.K_UP] and positionY > originY:
             positionY -= speed
-        if keyPressed[pygame.K_DOWN]:
+        if keyPressed[pygame.K_DOWN] and positionY < screenY - height:
             positionY += speed
-        if keyPressed[pygame.K_RIGHT]:
+        if keyPressed[pygame.K_RIGHT] and positionX < screenX - length:
             positionX += speed
-        if keyPressed[pygame.K_LEFT]:
+        if keyPressed[pygame.K_LEFT] and positionX > originX:
             positionX -= speed
 
         #makes the wallpaper black
