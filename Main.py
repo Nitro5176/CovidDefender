@@ -1,4 +1,5 @@
 import pygame
+from CovidCell import CovidCell
 
 pygame.init()
 #size of the window
@@ -41,19 +42,21 @@ positionX = 300
 positionY = 300
 
 def main():
-    #makes the variable running global.
+    # makes the variable running global.
     global running, height, length, speed, positionX, positionY
 
+    covid = CovidCell((200, 0, 0), 3, 30, 30)
+
     while running:
-        #frames:
+        # frames:
         clock.tick(30)
 
-        #to exit the game:
+        # to exit the game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
 
-        #when a key is pressed
+        # when a key is pressed
         keyPressed = pygame.key.get_pressed()
         if keyPressed[pygame.K_UP] and positionY > originY:
             positionY -= speed
@@ -64,9 +67,16 @@ def main():
         if keyPressed[pygame.K_LEFT] and positionX > originX:
             positionX -= speed
 
-        #makes the wallpaper black
+        covid.move()
+
+        # makes the wallpaper black
         window.fill((0,0,0))
+
+        # One CovidCell
+
         pygame.draw.rect(window, (0,255,0), (positionX, positionY, length, height))
+        pygame.draw.rect(window, covid.color, (covid.positionX, covid.positionY, covid.length, covid.height))
+
         #needs to refresh otherwise it would show a black screen
         pygame.display.update()
 #calling the main method
