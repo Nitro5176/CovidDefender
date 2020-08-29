@@ -9,6 +9,22 @@ pygame.display.set_caption("Covid Defender")
 clock = pygame.time.Clock()
 
 print("Welcome to CovidDefender!")
+print("   ooooooooooooooo")
+print(" o       o         o")
+print("o        o          o")
+print(" o       o         o")
+print("   ooooooooooooooo")
+print("")
+print("     \  |  /")
+print("   \ o  o  o /")
+print("  \ o       o /")
+print("   o  x   x  o")
+print("- o           o -")
+print("   o  vvvvv  o")
+print("  / o       o \ ")
+print("   / o  o  o \ ")
+print("    /   |   \ ")
+
 
 #Global variables:
 running = True
