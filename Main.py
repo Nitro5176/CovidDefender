@@ -1,5 +1,6 @@
 import pygame
 from CovidCell import CovidCell
+from WhiteCell import WhiteCell
 from CharacterCell import CharacterCell
 from RedCell import RedCell
 from StatusBar import StatusBar
@@ -53,6 +54,7 @@ def main():
 
     red = RedCell((204,0,0), 3, 30, 30)
     covid = CovidCell((255, 0, 255), 3, 30, 30)
+    white = WhiteCell((255, 255, 255), 3, 30, 30)
     hero = CharacterCell(positionX, positionY, height, length, speed)
     statusBar = StatusBar(10, 10, 25, 100, window)
     while running:
@@ -81,6 +83,7 @@ def main():
 
         covid.move()
         red.move()
+        white.move()
 
         rightSide = hero.positionX + hero.length
         leftSide = hero.positionX
@@ -137,6 +140,33 @@ def main():
               if(healthBar < 3 ):
                 healthBar += 1
 
+        # White Cell coll with user
+        if rightSide >= white.positionX and rightSide <= (white.positionX + white.length): # inside from left to right
+          if topSide >= white.positionY and topSide <= ( white.positionY + white.height):
+              print("from right-top")
+
+              if(healthBar < 3 ):
+                healthBar += 1
+
+
+          if bottomSide >= white.positionY and bottomSide <= ( white.positionY + white.height):
+              print("from right-bottom")
+
+              if(healthBar < 3 ):
+                healthBar += 1
+
+        if leftSide >= white.positionX and leftSide <= (white.positionX + white.length): # inside from right to left
+          if topSide >= white.positionY and topSide <= ( white.positionY + white.height):
+              print("from left-top")
+              if(healthBar < 3 ):
+                healthBar += 1
+
+          if bottomSide >= white.positionY and bottomSide <= ( white.positionY + white.height):
+              print("from left-bottom")
+
+              if(healthBar < 3 ):
+                healthBar += 1
+
         # makes the wallpaper black
         window.fill((0,0,0))
 
@@ -145,6 +175,7 @@ def main():
         hero.draw(window, heroPosition)
         covid.draw(window)
         red.draw(window)
+        white.draw(window)
         #pygame.draw.rect(window, covid.color, (covid.positionX, covid.positionY, covid.length, covid.height))
         #pygame.draw.rect(window, red.color, (red.positionX, red.positionY, red.length, red.height))
 

@@ -3,7 +3,7 @@ import time
 import pygame
 
 
-class RedCell:
+class WhiteCell:
 
     def __init__(self, color, speed, length, height):
         self.color = color
@@ -11,7 +11,7 @@ class RedCell:
         self.length = length
         self.height = height
         self.move()
-        self.red = pygame.image.load("WhiteCell.png")
+        self.white = pygame.image.load("whiteblood.png")
 
     # Change these later ( default here )
     positionX = random.randint(0, 600)
@@ -35,7 +35,7 @@ class RedCell:
                 self.positionY += self.speed
 
     def draw(self, window):
-        window.blit(self.red, (self.positionX, self.positionY))
+        window.blit(self.white, (self.positionX, self.positionY))
 
 
 
