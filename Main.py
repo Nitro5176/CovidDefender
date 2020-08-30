@@ -35,6 +35,7 @@ screenX = 600
 screenY = 600
 originX = 0
 originY = 0
+heroPosition = 0
 
 #temporary variables:
 height = 50
@@ -45,7 +46,7 @@ positionY = 300
 
 def main():
     # makes the variable running global.
-    global running, height, length, speed, positionX, positionY
+    global running, height, length, speed, positionX, positionY, heroPosition
 
     red = RedCell((204,0,0), 3, 30, 30)
     covid = CovidCell((255, 0, 255), 3, 30, 30)
@@ -63,12 +64,16 @@ def main():
         # when a key is pressed
         keyPressed = pygame.key.get_pressed()
         if keyPressed[pygame.K_UP] and hero.positionY > originY:
+            heroPosition = 1
             hero.positionY -= speed
         if keyPressed[pygame.K_DOWN] and hero.positionY < screenY - hero.height:
+            heroPosition = 2
             hero.positionY += speed
         if keyPressed[pygame.K_RIGHT] and hero.positionX < screenX - hero.length:
+            heroPosition = 4
             hero.positionX += speed
         if keyPressed[pygame.K_LEFT] and hero.positionX > originX:
+            heroPosition = 3
             hero.positionX -= speed
 
         covid.move()
@@ -79,7 +84,7 @@ def main():
 
         # One CovidCell
 
-        hero.draw(window)
+        hero.draw(window, heroPosition)
         covid.draw(window)
         red.draw(window)
         #pygame.draw.rect(window, covid.color, (covid.positionX, covid.positionY, covid.length, covid.height))
