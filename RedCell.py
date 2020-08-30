@@ -36,3 +36,4 @@ class RedCell:
 
     def draw(self, window):
         window.blit(self.red, (self.positionX, self.positionY))
+
