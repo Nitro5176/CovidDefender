@@ -12,7 +12,7 @@ class CharacterCell():
         self.character = [pygame.image.load("CharacterShip.png"), pygame.image.load("piishipdown.png"),
                           pygame.image.load("piishipleft.png"), pygame.image.load("piishipright.png")]
 
-    def draw(self, window, num,):
+    def draw(self, window, num):
         #1 == up
         #2 == down
         #3 == left
