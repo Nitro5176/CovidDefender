@@ -100,8 +100,10 @@ def main():
         # One CovidCell
 
         hero.draw(window)
-        pygame.draw.rect(window, covid.color, (covid.positionX, covid.positionY, covid.length, covid.height))
-        pygame.draw.rect(window, red.color, (red.positionX, red.positionY, red.length, red.height))
+        covid.draw(window)
+        red.draw(window)
+        #pygame.draw.rect(window, covid.color, (covid.positionX, covid.positionY, covid.length, covid.height))
+        #pygame.draw.rect(window, red.color, (red.positionX, red.positionY, red.length, red.height))
 
         # needs to refresh otherwise it would show a black screen
         pygame.display.update()
