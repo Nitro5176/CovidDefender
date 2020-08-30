@@ -4,6 +4,7 @@ from WhiteCell import WhiteCell
 from CharacterCell import CharacterCell
 from RedCell import RedCell
 from StatusBar import StatusBar
+import random
 
 pygame.init()
 #size of the window
@@ -61,11 +62,10 @@ def main():
     # makes the variable running global.
     global running, height, length, speed, positionX, positionY, heroPosition, healthBar, counting
 
-    red = RedCell((204,0,0), 3, 30, 30, 400, 450)
-    red2 = RedCell((204,0,0), 3, 30, 30, 111, 150)
 
-    covid = CovidCell((255, 0, 255), 3, 30, 30)
-    white = WhiteCell((255, 255, 255), 3, 30, 30)
+    redObjects = createListObject(RedCell, 5, 1)
+    covidObjects = createListObject(CovidCell, 5, 3)
+    whiteObjects = createListObject(WhiteCell, 5, 2)
     hero = CharacterCell(positionX, positionY, height, length, speed)
     statusBar = StatusBar(10, 10, 25, 100, window)
 
@@ -106,41 +106,40 @@ def main():
             heroPosition = 3
             hero.positionX -= speed
 
-        covid.move()
-        red.move()
-        red2.move()
-        white.move()
+        for i in range(5):
+            whiteObjects[i].move()
+        for i in range(5):
+            covidObjects[i].move()
+        for i in range(5):
+            redObjects[i].move()
 
         rightSide = hero.positionX + hero.length
         leftSide = hero.positionX
         topSide = hero.positionY
         bottomSide = hero.positionY + hero.height
 
-        # Check if User hits the red Cell
-        if red.did_hit(leftSide,topSide,rightSide,bottomSide):
-            if (healthBar > 0 and healthBar <= 3) and red.isVisible:
-                healthBar -= 1
-            red.set_visibility(False)
-
-        # Check if User hits the red2 Cell
-        if red2.did_hit(leftSide,topSide,rightSide,bottomSide):
-            if (healthBar > 0 and healthBar <= 3) and red2.isVisible:
-                healthBar -= 1
-            red2.set_visibility(False)
-
+        # FOR THE multiple RED CELLS check if it hits
+        for i in range(5):
+            if redObjects[i].did_hit(leftSide, topSide, rightSide, bottomSide):
+                if (healthBar > 0 and healthBar <= 3) and redObjects[i].isVisible:
+                    healthBar -= 1
+                redObjects[i].set_visibility(False)
 
 
         # Virus coll with user
-        if covid.did_hit(leftSide, topSide, rightSide, bottomSide):
-            if (healthBar < 3) and covid.isVisible:
-                healthBar += 1
-            covid.set_visibility(False)
+        for i in range(5):
+            if covidObjects[i].did_hit(leftSide, topSide, rightSide, bottomSide):
+                if (healthBar < 3) and covidObjects[i].isVisible:
+                    healthBar += 1
+                covidObjects[i].set_visibility(False)
 
         # White Cell coll with user
-        if white.did_hit(leftSide, topSide, rightSide, bottomSide):
-            if (healthBar < 3) and white.isVisible:
-                healthBar += 1
-            white.set_visibility(False)
+        for i in range(5):
+            if whiteObjects[i].did_hit(leftSide, topSide, rightSide, bottomSide):
+                if (healthBar < 3) and whiteObjects[i].isVisible:
+                    healthBar += 1
+                whiteObjects[i].set_visibility(False)
+
 
         # makes the wallpaper black
         #window.fill((0,0,0))
@@ -148,18 +147,43 @@ def main():
         # One CovidCell
         statusBar.health(window, healthBar)
         hero.draw(window, heroPosition)
-        if covid.isVisible:
-            covid.draw(window)
-        if red.isVisible:
-            red.draw(window)
-        if red2.isVisible:
-            red2.draw(window)
-        if white.isVisible:
-            white.draw(window)
+
+
+        for i in range(len(covidObjects)):
+            if covidObjects[i].isVisible:
+                covidObjects[i].draw(window)
+        for i in range(len(whiteObjects)):
+            if whiteObjects[i].isVisible:
+                whiteObjects[i].draw(window)
+        for i in range(len(redObjects)):
+            if redObjects[i].isVisible:
+                redObjects[i].draw(window)
+                
         counting += 1
+
+
         # needs to refresh otherwise it would show a black screen
         pygame.display.update()
 
+
+def createListObject(object, num, type):
+    Objects = list()
+    for i in range(num):
+        steps = random.randint(1,4)
+        positionX = random.randint(0, 600)
+        positionY = random.randint(0, 600)
+
+        #red blood cells
+        if(type == 1):
+            Objects.append(object((204,0,0), steps, 30, 30, positionX, positionY))
+        #white blood cells
+        elif (type == 2):
+            Objects.append(object((204, 0, 0), steps, 30, 30, positionX, positionY))
+        #covid cells
+        elif(type == 3):
+            Objects.append(object((204, 0, 0), steps, 30, 30, positionX, positionY))
+
+    return Objects
 
 # calling the main method
 main()

@@ -5,17 +5,19 @@ import time
 class CovidCell:
     isVisible = True
 
-    def __init__(self, color, speed, length, height):
+    def __init__(self, color, speed, length, height, positionX, positionY):
         self.color = color
         self.speed = speed
         self.length = length
         self.height = height
+        self.positionX = positionX
+        self.positionY = positionY
         self.move()
         self.covidCell = pygame.image.load("Covid.png")
 
     # Change these later ( default here )
-    positionX = 100
-    positionY = 100
+    #positionX = random.randint(0, 600)
+    #ositionY = random.randint(0, 600)
 
     def move(self):
         # 1 - Left

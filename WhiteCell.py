@@ -6,17 +6,19 @@ import pygame
 class WhiteCell:
     isVisible = True
 
-    def __init__(self, color, speed, length, height):
+    def __init__(self, color, speed, length, height, positionX, positionY):
         self.color = color
         self.speed = speed
         self.length = length
         self.height = height
+        self.positionX = positionX
+        self.positionY = positionY
         self.move()
         self.white = pygame.image.load("whiteblood.png")
 
     # Change these later ( default here )
-    positionX = random.randint(0, 600)
-    positionY = random.randint(0, 600)
+    #positionX = random.randint(0, 600)
+    #positionY = random.randint(0, 600)
 
     def move(self):
         # 1 - Left
