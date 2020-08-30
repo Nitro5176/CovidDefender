@@ -74,11 +74,11 @@ def main():
         #creates 3 background animations
         if(counting > 0 and counting < 50):
             # background
-            window.blit(background1, (0, 0))
+            window.blit(background3, (0, 0))
         elif (counting > 50 and counting < 100):
             window.blit(background2, (0, 0))
         elif(counting >= 100 and counting < 150):
-            window.blit(background3, (0, 0))
+            window.blit(background1, (0, 0))
         elif(counting >= 150):
             counting = 0
         # frames:
