@@ -179,8 +179,13 @@ def main():
             window.blit(gameOver_surface, gameOver_rect)
             running = False
         flag = True
+        count = 0
         for i in range(len(covidObjects)):
-            flag = covidObjects[i].isVisible
+            if (len(covidObjects)-1 == count):
+                flag = False
+            if not covidObjects[i].isVisible:
+                count += 1
+            print(flag)
 
         if flag == False:
             window.blit(winning_surface, winning_rect)
