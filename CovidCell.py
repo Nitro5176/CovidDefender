@@ -3,6 +3,7 @@ import pygame
 import time
 
 class CovidCell:
+    isVisible = True
 
     def __init__(self, color, speed, length, height):
         self.color = color
@@ -36,3 +37,6 @@ class CovidCell:
 
     def draw(self, window):
         window.blit(self.covidCell, (self.positionX, self.positionY))
+
+    def set_visibility(self, is_visible):
+        self.isVisible = is_visible

@@ -4,6 +4,7 @@ import pygame
 
 
 class RedCell:
+    isVisible = True
 
     def __init__(self, color, speed, length, height):
         self.color = color
@@ -37,3 +38,5 @@ class RedCell:
     def draw(self, window):
         window.blit(self.red, (self.positionX, self.positionY))
 
+    def set_visibility(self, is_visible):
+        self.isVisible = is_visible
