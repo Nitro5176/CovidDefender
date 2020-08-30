@@ -114,9 +114,9 @@ def main():
             hero.positionX -= speed
 
         for i in range(5):
-            whiteObjects[i].move()
+            whiteObjects[i].move(hero.positionX, hero.positionY)
         for i in range(5):
-            covidObjects[i].move()
+            covidObjects[i].move(hero.positionX, hero.positionY)
         for i in range(5):
             redObjects[i].move()
 

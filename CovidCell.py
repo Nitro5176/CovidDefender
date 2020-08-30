@@ -12,30 +12,40 @@ class CovidCell:
         self.height = height
         self.positionX = positionX
         self.positionY = positionY
-        self.move()
+        self.move(300, 300)
         self.covidCell = pygame.image.load("Covid.png")
 
     # Change these later ( default here )
     #positionX = random.randint(0, 600)
     #ositionY = random.randint(0, 600)
 
-    def move(self):
+    def move(self, heroX, heroY):
         # 1 - Left
         # 2 - Up
         # 3 - Right
         # 4 - Down
         direction = random.randint(1, 4)
 
-
-        for i in range(5):
-            if direction == 1 and self.positionX > 0 + 3:
-                self.positionX -= self.speed
-            if direction == 2 and self.positionY > 0 + 3:
-                self.positionY -= self.speed
-            if direction == 3 and self.positionX < 570 - 3:
-                self.positionX += self.speed
-            if direction == 4 and self.positionY < 570 - 3:
-                self.positionY += self.speed
+        if direction == 1:
+            for i in range(5):
+                if self.positionX > heroX and self.positionX > 0 + 3:
+                    self.positionX -= self.speed
+                if self.positionY > heroY and self.positionY > 0 + 3:
+                    self.positionY -= self.speed
+                if self.positionX < heroX and self.positionX < 570 - 3:
+                    self.positionX += self.speed
+                if self.positionY < heroY and self.positionY < 570 - 3:
+                    self.positionY += self.speed
+        else:
+            for i in range(5):
+                if direction == 1 and self.positionX > 0 + 3:
+                    self.positionX -= self.speed
+                if direction == 2 and self.positionY > 0 + 3:
+                    self.positionY -= self.speed
+                if direction == 3 and self.positionX < 570 - 3:
+                    self.positionX += self.speed
+                if direction == 4 and self.positionY < 570 - 3:
+                    self.positionY += self.speed
 
     def draw(self, window):
         window.blit(self.covidCell, (self.positionX, self.positionY))

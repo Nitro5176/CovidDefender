@@ -13,29 +13,50 @@ class WhiteCell:
         self.height = height
         self.positionX = positionX
         self.positionY = positionY
-        self.move()
+        self.move(300, 300)
         self.white = pygame.image.load("whiteblood.png")
 
     # Change these later ( default here )
     #positionX = random.randint(0, 600)
     #positionY = random.randint(0, 600)
 
-    def move(self):
+    def move(self, heroX, heroY):
         # 1 - Left
         # 2 - Up
         # 3 - Right
         # 4 - Down
         direction = random.randint(1, 4)
 
-        for i in range(1):
-            if direction == 1 and self.positionX > 0+3:
-                self.positionX -= self.speed
-            if direction == 2 and self.positionY > 0+3:
-                self.positionY -= self.speed
-            if direction == 3 and self.positionX < 570 -3:
-                self.positionX += self.speed
-            if direction == 4 and self.positionY < 570 -3:
-                self.positionY += self.speed
+        if direction == 1:
+            for i in range(5):
+                if self.positionX > heroX and self.positionX > 0 + 3:
+                    self.positionX -= self.speed
+                if self.positionY > heroY and self.positionY > 0 + 3:
+                    self.positionY -= self.speed
+                if self.positionX < heroX and self.positionX < 570 - 3:
+                    self.positionX += self.speed
+                if self.positionY < heroY and self.positionY < 570 - 3:
+                    self.positionY += self.speed
+        else:
+            for i in range(5):
+                if direction == 1 and self.positionX > 0 + 3:
+                    self.positionX -= self.speed
+                if direction == 2 and self.positionY > 0 + 3:
+                    self.positionY -= self.speed
+                if direction == 3 and self.positionX < 570 - 3:
+                    self.positionX += self.speed
+                if direction == 4 and self.positionY < 570 - 3:
+                    self.positionY += self.speed
+
+        #for i in range(1):
+            #if direction == 1 and self.positionX > 0+3:
+                #self.positionX -= self.speed
+            #if direction == 2 and self.positionY > 0+3:
+                #self.positionY -= self.speed
+            #if direction == 3 and self.positionX < 570 -3:
+                #self.positionX += self.speed
+            #if direction == 4 and self.positionY < 570 -3:
+                #self.positionY += self.speed
 
     def draw(self, window):
         window.blit(self.white, (self.positionX, self.positionY))
