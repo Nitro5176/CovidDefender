@@ -8,6 +8,10 @@ from StatusBar import StatusBar
 pygame.init()
 #size of the window
 window = pygame.display.set_mode((600, 600))
+#backgrounds
+background1 = pygame.image.load("topbackground.png")
+background2 = pygame.image.load("middlebackground.png")
+background3 = pygame.image.load("bottombackground.png")
 #display name
 pygame.display.set_caption("Covid Defender")
 #clock (for frames per second)
@@ -40,24 +44,43 @@ originY = 0
 heroPosition = 0
 #0->3 green, yellow, red, dead
 healthBar = 0
-
-#temporary variables:
+#positioning
 height = 50
 length = 50
 speed = 5
 positionX = 300
 positionY = 300
+#background countdown and switch
+counting = 0
+
+
+
+
 
 def main():
     # makes the variable running global.
-    global running, height, length, speed, positionX, positionY, heroPosition, healthBar
+    global running, height, length, speed, positionX, positionY, heroPosition, healthBar, counting
 
     red = RedCell((204,0,0), 3, 30, 30)
     covid = CovidCell((255, 0, 255), 3, 30, 30)
     white = WhiteCell((255, 255, 255), 3, 30, 30)
     hero = CharacterCell(positionX, positionY, height, length, speed)
     statusBar = StatusBar(10, 10, 25, 100, window)
+
     while running:
+        # reset
+        window.fill((0, 0, 0))
+
+        #creates 3 background animations
+        if(counting > 0 and counting < 50):
+            # background
+            window.blit(background1, (0, 0))
+        elif (counting > 50 and counting < 100):
+            window.blit(background2, (0, 0))
+        elif(counting >= 100 and counting < 150):
+            window.blit(background3, (0, 0))
+        elif(counting >= 150):
+            counting = 0
         # frames:
         clock.tick(30)
 
@@ -168,7 +191,7 @@ def main():
                 healthBar += 1
 
         # makes the wallpaper black
-        window.fill((0,0,0))
+        #window.fill((0,0,0))
 
         # One CovidCell
         statusBar.health(window, healthBar)
@@ -176,9 +199,7 @@ def main():
         covid.draw(window)
         red.draw(window)
         white.draw(window)
-        #pygame.draw.rect(window, covid.color, (covid.positionX, covid.positionY, covid.length, covid.height))
-        #pygame.draw.rect(window, red.color, (red.positionX, red.positionY, red.length, red.height))
-
+        counting += 1
         # needs to refresh otherwise it would show a black screen
         pygame.display.update()
 
