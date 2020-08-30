@@ -84,6 +84,7 @@ def main():
         topSide = hero.positionY
         bottomSide = hero.positionY + hero.height
 
+        # Check if User hits the red Cell
         if rightSide >= red.positionX and rightSide <= (red.positionX + red.length): # inside from left to right
           if topSide >= red.positionY and topSide <= ( red.positionY + red.height):
               print("from right-top")
@@ -96,6 +97,21 @@ def main():
               print("from left-top")
 
           if bottomSide >= red.positionY and bottomSide <= ( red.positionY + red.height):
+              print("from left-bottom")
+
+        # Virus coll with user
+        if rightSide >= covid.positionX and rightSide <= (covid.positionX + covid.length): # inside from left to right
+          if topSide >= covid.positionY and topSide <= ( covid.positionY + covid.height):
+              print("from right-top")
+
+          if bottomSide >= covid.positionY and bottomSide <= ( covid.positionY + covid.height):
+              print("from right-bottom")
+
+        if leftSide >= covid.positionX and leftSide <= (covid.positionX + covid.length): # inside from right to left
+          if topSide >= covid.positionY and topSide <= ( covid.positionY + covid.height):
+              print("from left-top")
+
+          if bottomSide >= covid.positionY and bottomSide <= ( covid.positionY + covid.height):
               print("from left-bottom")
 
 
