@@ -54,7 +54,7 @@ def main():
     red = RedCell((204,0,0), 3, 30, 30)
     covid = CovidCell((255, 0, 255), 3, 30, 30)
     hero = CharacterCell(positionX, positionY, height, length, speed)
-    statusBar = StatusBar(10, 10, 25, 100)
+    statusBar = StatusBar(10, 10, 25, 100, window)
     while running:
         # frames:
         clock.tick(30)
@@ -91,23 +91,23 @@ def main():
         if rightSide >= red.positionX and rightSide <= (red.positionX + red.length): # inside from left to right
           if topSide >= red.positionY and topSide <= ( red.positionY + red.height):
               print("from right-top")
-              if (healthBar >0 and healthBar <= 3):
+              if (healthBar > 0 and healthBar <= 3):
                   healthBar -= 1
 
           if bottomSide >= red.positionY and bottomSide <= ( red.positionY + red.height):
               print("from right-bottom")
-              if (healthBar >0 and healthBar <= 3):
+              if (healthBar > 0 and healthBar <= 3):
                   healthBar -= 1
 
         if leftSide >= red.positionX and leftSide <= (red.positionX + red.length): # inside from right to left
           if topSide >= red.positionY and topSide <= ( red.positionY + red.height):
               print("from left-top")
-              if (healthBar >0 and healthBar <= 3):
+              if (healthBar > 0 and healthBar <= 3):
                   healthBar -= 1
 
           if bottomSide >= red.positionY and bottomSide <= ( red.positionY + red.height):
               print("from left-bottom")
-              if (healthBar >0 and healthBar <= 3):
+              if (healthBar > 0 and healthBar <= 3):
                   healthBar -= 1
 
         # Virus coll with user
@@ -115,27 +115,26 @@ def main():
           if topSide >= covid.positionY and topSide <= ( covid.positionY + covid.height):
               print("from right-top")
 
-              if(healthBar <3 ):
+              if(healthBar < 3 ):
                 healthBar += 1
 
 
           if bottomSide >= covid.positionY and bottomSide <= ( covid.positionY + covid.height):
               print("from right-bottom")
 
-              if(healthBar <3 ):
+              if(healthBar < 3 ):
                 healthBar += 1
 
         if leftSide >= covid.positionX and leftSide <= (covid.positionX + covid.length): # inside from right to left
           if topSide >= covid.positionY and topSide <= ( covid.positionY + covid.height):
               print("from left-top")
-
-              if(healthBar <3 ):
+              if(healthBar < 3 ):
                 healthBar += 1
 
           if bottomSide >= covid.positionY and bottomSide <= ( covid.positionY + covid.height):
               print("from left-bottom")
 
-              if(healthBar <3 ):
+              if(healthBar < 3 ):
                 healthBar += 1
 
         # makes the wallpaper black
