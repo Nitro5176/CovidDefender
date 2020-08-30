@@ -140,6 +140,33 @@ def main():
               if(healthBar < 3 ):
                 healthBar += 1
 
+        # White Cell coll with user
+        if rightSide >= white.positionX and rightSide <= (white.positionX + white.length): # inside from left to right
+          if topSide >= white.positionY and topSide <= ( white.positionY + white.height):
+              print("from right-top")
+
+              if(healthBar < 3 ):
+                healthBar += 1
+
+
+          if bottomSide >= white.positionY and bottomSide <= ( white.positionY + white.height):
+              print("from right-bottom")
+
+              if(healthBar < 3 ):
+                healthBar += 1
+
+        if leftSide >= white.positionX and leftSide <= (white.positionX + white.length): # inside from right to left
+          if topSide >= white.positionY and topSide <= ( white.positionY + white.height):
+              print("from left-top")
+              if(healthBar < 3 ):
+                healthBar += 1
+
+          if bottomSide >= white.positionY and bottomSide <= ( white.positionY + white.height):
+              print("from left-bottom")
+
+              if(healthBar < 3 ):
+                healthBar += 1
+
         # makes the wallpaper black
         window.fill((0,0,0))
 
