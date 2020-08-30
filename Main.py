@@ -1,4 +1,6 @@
+import time
 import pygame
+
 from CovidCell import CovidCell
 from WhiteCell import WhiteCell
 from CharacterCell import CharacterCell
@@ -35,6 +37,11 @@ print("  / o       o \ ")
 print("   / o  o  o \ ")
 print("    /   |   \ ")
 
+#Game Over Text
+gameOver = pygame.font.Font('freesansbold.ttf', 32)
+gameOver_surface = gameOver.render('Game Over', True, (255, 255, 255), (0, 0, 0))
+gameOver_rect = gameOver_surface.get_rect()
+gameOver_rect.center = (300,300)
 
 #Global variables:
 running = True
@@ -161,7 +168,9 @@ def main():
                 
         counting += 1
 
-
+        if healthBar == 3:
+            window.blit(gameOver_surface, gameOver_rect)
+            running = False
         # needs to refresh otherwise it would show a black screen
         pygame.display.update()
 
@@ -187,4 +196,5 @@ def createListObject(object, num, type):
 
 # calling the main method
 main()
+time.sleep(3)
 pygame.quit()
