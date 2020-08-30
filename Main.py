@@ -61,7 +61,9 @@ def main():
     # makes the variable running global.
     global running, height, length, speed, positionX, positionY, heroPosition, healthBar, counting
 
-    red = RedCell((204,0,0), 3, 30, 30)
+    red = RedCell((204,0,0), 3, 30, 30, 400, 450)
+    red2 = RedCell((204,0,0), 3, 30, 30, 111, 150)
+
     covid = CovidCell((255, 0, 255), 3, 30, 30)
     white = WhiteCell((255, 255, 255), 3, 30, 30)
     hero = CharacterCell(positionX, positionY, height, length, speed)
@@ -106,6 +108,7 @@ def main():
 
         covid.move()
         red.move()
+        red2.move()
         white.move()
 
         rightSide = hero.positionX + hero.length
@@ -114,93 +117,30 @@ def main():
         bottomSide = hero.positionY + hero.height
 
         # Check if User hits the red Cell
-        if rightSide >= red.positionX and rightSide <= (red.positionX + red.length): # inside from left to right
-          if topSide >= red.positionY and topSide <= ( red.positionY + red.height):
-              print("from right-top")
-              if (healthBar > 0 and healthBar <= 3) and red.isVisible:
-                  healthBar -= 1
-              red.set_visibility(False)
+        if red.did_hit(leftSide,topSide,rightSide,bottomSide):
+            if (healthBar > 0 and healthBar <= 3) and red.isVisible:
+                healthBar -= 1
+            red.set_visibility(False)
 
-          if bottomSide >= red.positionY and bottomSide <= ( red.positionY + red.height):
-              print("from right-bottom")
-              if (healthBar > 0 and healthBar <= 3) and red.isVisible:
-                  healthBar -= 1
-              red.set_visibility(False)
+        # Check if User hits the red2 Cell
+        if red2.did_hit(leftSide,topSide,rightSide,bottomSide):
+            if (healthBar > 0 and healthBar <= 3) and red2.isVisible:
+                healthBar -= 1
+            red2.set_visibility(False)
 
-        if leftSide >= red.positionX and leftSide <= (red.positionX + red.length): # inside from right to left
-          if topSide >= red.positionY and topSide <= ( red.positionY + red.height):
-              print("from left-top")
-              if (healthBar > 0 and healthBar <= 3) and red.isVisible:
-                  healthBar -= 1
-              red.set_visibility(False)
 
-          if bottomSide >= red.positionY and bottomSide <= ( red.positionY + red.height):
-              print("from left-bottom")
-              if (healthBar > 0 and healthBar <= 3) and red.isVisible:
-                  healthBar -= 1
-              red.set_visibility(False)
 
         # Virus coll with user
-        if rightSide >= covid.positionX and rightSide <= (covid.positionX + covid.length): # inside from left to right
-          if topSide >= covid.positionY and topSide <= ( covid.positionY + covid.height):
-              print("from right-top")
-
-              if(healthBar < 3 ) and covid.isVisible:
+        if covid.did_hit(leftSide, topSide, rightSide, bottomSide):
+            if (healthBar < 3) and covid.isVisible:
                 healthBar += 1
-              covid.set_visibility(False)
-
-          if bottomSide >= covid.positionY and bottomSide <= ( covid.positionY + covid.height):
-              print("from right-bottom")
-
-              if(healthBar < 3 ) and covid.isVisible:
-                healthBar += 1
-              covid.set_visibility(False)
-
-        if leftSide >= covid.positionX and leftSide <= (covid.positionX + covid.length): # inside from right to left
-          if topSide >= covid.positionY and topSide <= ( covid.positionY + covid.height):
-              print("from left-top")
-              if(healthBar < 3 ) and covid.isVisible:
-                healthBar += 1
-              covid.set_visibility(False)
-
-          if bottomSide >= covid.positionY and bottomSide <= ( covid.positionY + covid.height):
-              print("from left-bottom")
-
-              if(healthBar < 3 ) and covid.isVisible:
-                healthBar += 1
-              covid.set_visibility(False)
+            covid.set_visibility(False)
 
         # White Cell coll with user
-        if rightSide >= white.positionX and rightSide <= (white.positionX + white.length): # inside from left to right
-          if topSide >= white.positionY and topSide <= ( white.positionY + white.height):
-              print("from right-top")
-
-              if (healthBar < 3 ) and white.isVisible:
+        if white.did_hit(leftSide, topSide, rightSide, bottomSide):
+            if (healthBar < 3) and white.isVisible:
                 healthBar += 1
-              white.set_visibility(False)
-
-          if bottomSide >= white.positionY and bottomSide <= ( white.positionY + white.height):
-              print("from right-bottom")
-
-              if(healthBar < 3 ) and white.isVisible:
-                healthBar += 1
-              white.set_visibility(False)
-
-        if leftSide >= white.positionX and leftSide <= (white.positionX + white.length): # inside from right to left
-          if topSide >= white.positionY and topSide <= ( white.positionY + white.height):
-              print("from left-top")
-
-              if(healthBar < 3 ) and white.isVisible:
-                healthBar += 1
-
-              white.set_visibility(False)
-
-          if bottomSide >= white.positionY and bottomSide <= ( white.positionY + white.height):
-              print("from left-bottom")
-              if(healthBar < 3 ) and white.isVisible:
-                healthBar += 1
-
-              white.set_visibility(False)
+            white.set_visibility(False)
 
         # makes the wallpaper black
         #window.fill((0,0,0))
@@ -212,6 +152,8 @@ def main():
             covid.draw(window)
         if red.isVisible:
             red.draw(window)
+        if red2.isVisible:
+            red2.draw(window)
         if white.isVisible:
             white.draw(window)
         counting += 1
