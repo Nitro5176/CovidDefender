@@ -39,9 +39,16 @@ print("    /   |   \ ")
 
 #Game Over Text
 gameOver = pygame.font.Font('freesansbold.ttf', 32)
-gameOver_surface = gameOver.render('Game Over', True, (255, 255, 255), (0, 0, 0))
+gameOver_surface = gameOver.render('Covid Wins...', True, (255, 255, 255), (0, 0, 0))
 gameOver_rect = gameOver_surface.get_rect()
 gameOver_rect.center = (300,300)
+
+# Winning text
+winning = pygame.font.Font('freesansbold.ttf', 32)
+winning_surface = winning.render('You Beat Covid!', True, (255, 255, 255), (0, 0, 0))
+winning_rect = winning_surface.get_rect()
+winning_rect.center = (300,300)
+
 
 #Global variables:
 running = True
@@ -170,6 +177,13 @@ def main():
 
         if healthBar == 3:
             window.blit(gameOver_surface, gameOver_rect)
+            running = False
+        flag = True
+        for i in range(len(covidObjects)):
+            flag = covidObjects[i].isVisible
+
+        if flag == False:
+            window.blit(winning_surface, winning_rect)
             running = False
         # needs to refresh otherwise it would show a black screen
         pygame.display.update()
