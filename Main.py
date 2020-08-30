@@ -74,6 +74,26 @@ def main():
         covid.move()
         red.move()
 
+        rightSide = hero.positionX + hero.length
+        leftSide = hero.positionX
+        topSide = hero.positionY
+        bottomSide = hero.positionY + hero.height
+
+        if rightSide >= red.positionX and rightSide <= (red.positionX + red.length): # inside from left to right
+          if topSide >= red.positionY and topSide <= ( red.positionY + red.height):
+              print("from right-top")
+
+          if bottomSide >= red.positionY and bottomSide <= ( red.positionY + red.height):
+              print("from right-bottom")
+
+        if leftSide >= red.positionX and leftSide <= (red.positionX + red.length): # inside from right to left
+          if topSide >= red.positionY and topSide <= ( red.positionY + red.height):
+              print("from left-top")
+
+          if bottomSide >= red.positionY and bottomSide <= ( red.positionY + red.height):
+              print("from left-bottom")
+
+
         # makes the wallpaper black
         window.fill((0,0,0))
 
@@ -83,8 +103,10 @@ def main():
         pygame.draw.rect(window, covid.color, (covid.positionX, covid.positionY, covid.length, covid.height))
         pygame.draw.rect(window, red.color, (red.positionX, red.positionY, red.length, red.height))
 
-        #needs to refresh otherwise it would show a black screen
+        # needs to refresh otherwise it would show a black screen
         pygame.display.update()
-#calling the main method
+
+
+# calling the main method
 main()
 pygame.quit()

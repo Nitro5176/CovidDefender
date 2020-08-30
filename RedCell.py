@@ -22,8 +22,7 @@ class RedCell:
         # 4 - Down
         direction = random.randint(1, 4)
 
-
-        for i in range(5):
+        for i in range(1):
             if direction == 1 and self.positionX > 0+3:
                 self.positionX -= self.speed
             if direction == 2 and self.positionY > 0+3:
@@ -32,4 +31,3 @@ class RedCell:
                 self.positionX += self.speed
             if direction == 4 and self.positionY < 570 -3:
                 self.positionY += self.speed
-
